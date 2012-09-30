@@ -9,6 +9,7 @@ var width = 800,
 
 
 var clear = function(){
+    
 	ctx.fillStyle = '#0aa10a';
 	ctx.clearRect(0, 0, width, height);
 	ctx.beginPath();
@@ -26,22 +27,14 @@ var player = new (function(){
 	that.image.src = "p.svg"
 	that.width = 30;
 	that.height = 35;
-	that.frames = 1;
+	that.frames = 0;
 	that.actualFrame = 0;
 	that.X = 0;
 	that.Y = 0;	
 	
 	/*
-	 * Part 3 - jumping
+	 * 
 	 */
-	
-   
-	
-	
-	
-	
-	
-	
 	
 	that.moveLeft = function(){
 		if (that.X > 0) {
@@ -54,10 +47,21 @@ var player = new (function(){
 			that.setPosition(that.X + 5, that.Y);
 		}
 	}
-
-	/*
-	 * end of part 3
-	 */
+	
+	
+	that.moveUp = function(){
+		if (that.Y > 0) {
+			that.setPosition(that.Y - 5, that.X);
+		}
+	}
+	
+	that.moveDown = function(){
+		if (that.Y + that.width < width) {
+			that.setPosition(that.Y + 5, that.X);
+		}
+	}
+	
+	/*/*/
 	
 	that.setPosition = function(x, y){
 		that.X = x;
@@ -94,6 +98,12 @@ document.onmousemove = function(e){
 		player.moveLeft();
 	} else if (player.X + c.offsetLeft < e.pageX) {
 		player.moveRight();
+	}
+	
+	if (player.Y + c.offsetUp > e.pageY) {
+		player.moveUp();
+	} else if (player.Y + c.offsetUp < e.pageY) {
+		player.moveDown();
 	}
 	
 }

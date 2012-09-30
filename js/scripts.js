@@ -1,23 +1,25 @@
-var step = 0;
-var speed = 10;
+﻿var step = 0;
+var speed = 20;
 var radius = 30;
 var canvasWidth, canvasHeight;
-var gg_hp = 5;
-var gg_hp_posX = 335;
+var gg_hp = 100;
 var score = 0;
 var weapon = 'Дедова быстрозарядка';
-var level = '1: Адское пастбище'
+var level = '1: Адское пастбище';
+var count = 5;
+var enemies = [];
+var enspd = 1.5;
 
 window.onload = function() {
+
     var canvas = document.getElementById('game');
     var c = canvas.getContext('2d');
     canvasWidth = canvas.width;
     canvasHeight = canvas.height;
     var gg_posX = canvasWidth / 2;
     var gg_posY = canvasHeight / 2;
-
     var text = "> Testing";
-
+    enCreate();
 
     var FPS = 30;
     setInterval(function() {
@@ -26,8 +28,14 @@ window.onload = function() {
     }, 1000/FPS);
 
     function update() {
-        //Полоса загрузки
         step++;
+        move();
+        for(var i = 0; i<enemies.length; i++)
+        {
+            if ( enemies[i].en_posX===gg_posX&&enemies[i].en_posY===gg_posY)
+            { gg_hp--;}
+        }
+        if (gg_hp < 0) gg_hp = 0;
     }
 
     function draw() {
@@ -36,16 +44,15 @@ window.onload = function() {
         c.fillStyle = 'Black';
         c.strokeText(text, 30, 570);
         c.fillText(text, 30, 570);
-        loading();
-        gg();
-        GUI();
+        loading();  gg(); drawEnemy(); GUI();
     }
 
     function gg() {
         var gg_pic = new Image();
         gg_pic.src = 'assets/gg_right.jpg';
+
         gg_pic.onload = function(){
-        c.drawImage(gg_pic, gg_posX, gg_posY);
+            c.drawImage(gg_pic, gg_posX, gg_posY);
         }
     }
 
@@ -56,19 +63,15 @@ window.onload = function() {
         c.fillText('Ваш счёт: ' + score, 35, 35);
         // HP
         c.fillText('HP: ', 280, 35);
-        c.fillRect(gg_hp_posX, 10, 130, 30);
+        c.fillRect(335, 10, 110, 30);
         c.fillStyle = 'White';
-        if (gg_hp == 1) { c.fillRect(gg_hp_posX + 5, 15, 20, 20); }
-        if (gg_hp == 2) { c.fillRect(gg_hp_posX + 5, 15, 20, 20); c.fillRect(gg_hp_posX + 30, 15, 20, 20); }
-        if (gg_hp == 3) { c.fillRect(gg_hp_posX + 5, 15, 20, 20); c.fillRect(gg_hp_posX + 30, 15, 20, 20) ; c.fillRect(gg_hp_posX + 55, 15, 20, 20); }
-        if (gg_hp == 4) { c.fillRect(gg_hp_posX + 5, 15, 20, 20); c.fillRect(gg_hp_posX + 30, 15, 20, 20) ; c.fillRect(gg_hp_posX + 55, 15, 20, 20); c.fillRect(gg_hp_posX + 80, 15, 20, 20); }
-        if (gg_hp == 5) { c.fillRect(gg_hp_posX + 5, 15, 20, 20); c.fillRect(gg_hp_posX + 30, 15, 20, 20) ; c.fillRect(gg_hp_posX + 55, 15, 20, 20); c.fillRect(gg_hp_posX + 80, 15, 20, 20); c.fillRect(gg_hp_posX + 105, 15, 20, 20);}
+        c.fillRect(340, 15, gg_hp, 20);
         // Weapon
         c.fillStyle = 'Black';
         c.font = "15pt Arial";
         c.fillText('Оружие: ' + weapon, 480, 30);
         c.fillText('Уровень ' + level, 490, 570);
-        }
+    }
 
     function loading() {
         if (step==5) { step = 0; }
@@ -116,4 +119,10 @@ window.onload = function() {
                 break;
         }
     }
+
 };
+
+function getRandomInt(min, max)
+{
+    return Math.floor(Math.random()*(max-min+1))+min;
+}

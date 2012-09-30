@@ -26,3 +26,8 @@ var Key = (function() {
     up:     up
   };
 })();
+
+function test() {
+          return 1+1;
+
+}

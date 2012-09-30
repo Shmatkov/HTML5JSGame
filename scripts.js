@@ -22,21 +22,6 @@ window.onload = function() {
     function update() {
         //Полоса загрузки
         step++;
-        // gg_posY--;
-        // gg_posX -= this.speed;
-
-        if (Key.isDown(Key.LEFT)) {
-            gg_posX -= this.speed;
-        }
-        if (Key.isDown(Key.RIGHT)) {
-            gg_posX += this.speed;
-        }
-        if (Key.isDown(Key.UP)) {
-            gg_posY -= this.speed;
-        }
-        if (Key.isDown(Key.DOWN)) {
-            gg_posY += this.speed;
-        }
     }
 
     function draw() {
@@ -77,11 +62,15 @@ window.onload = function() {
         }
     }
 
-    /* document.onkeydown = checkKeycode
+    document.onkeydown = checkKeycode;
     function checkKeycode(e) {
         var keycode;
         if (window.event) keycode = window.event.keyCode;
-        else if (e) keycode = e.which;
-        alert("keycode: " + keycode);
-    } */
+        // else if (e) keycode = e.which;
+        // alert("keycode: " + keycode);
+        if (keycode == 40) gg_posY += speed;
+        if (keycode == 38) gg_posY -= speed;
+        if (keycode == 37) gg_posX -= speed;
+        if (keycode == 39) gg_posX += speed;
+    }
 };

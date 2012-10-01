@@ -10,6 +10,7 @@ window.onload = function() {
     canvasHeight = canvas.height;
     var gg_posX = canvasWidth / 2;
     var gg_posY = canvasHeight / 2;
+
     var text = "> Testing";
     c.font = "20pt Arial";
 
@@ -34,11 +35,11 @@ window.onload = function() {
     }
 
     function gg() {
-        c.fillStyle = 'Magenta';
-        c.beginPath();
-        c.arc(gg_posX, gg_posY, radius, 0, 360, false);
-        c.closePath();
-        c.fill();
+        var gg_pic = new Image();
+        gg_pic.src = 'assets/gg_right.jpg';
+        gg_pic.onload = function(){
+        c.drawImage(gg_pic, gg_posX, gg_posY);
+        }
     }
 
     function loading() {
@@ -62,15 +63,29 @@ window.onload = function() {
         }
     }
 
-    document.onkeydown = checkKeycode;
-    function checkKeycode(e) {
-        var keycode;
-        if (window.event) keycode = window.event.keyCode;
-        // else if (e) keycode = e.which;
-        // alert("keycode: " + keycode);
-        if (keycode == 40) gg_posY += speed;
-        if (keycode == 38) gg_posY -= speed;
-        if (keycode == 37) gg_posX -= speed;
-        if (keycode == 39) gg_posX += speed;
+    window.addEventListener('keydown',doKeyDown,true);
+    function doKeyDown(evt){
+        switch (evt.keyCode) {
+            case 38:
+                if (gg_posY > radius){
+                    gg_posY -= speed;
+                }
+                break;
+            case 40:
+                if (gg_posY < canvasHeight - radius){
+                    gg_posY += speed;
+                }
+                break;
+            case 37:
+                if (gg_posX > radius){
+                    gg_posX -= speed;
+                }
+                break;
+            case 39:
+                if (gg_posX < canvasWidth - radius){
+                    gg_posX += speed;
+                }
+                break;
+        }
     }
 };

@@ -2,6 +2,11 @@ var step = 0;
 var speed = 10;
 var radius = 30;
 var canvasWidth, canvasHeight;
+var gg_hp = 5;
+var gg_hp_posX = 335;
+var score = 0;
+var weapon = 'Дедова быстрозарядка';
+var level = '1: Адское пастбище'
 
 window.onload = function() {
     var canvas = document.getElementById('game');
@@ -12,7 +17,7 @@ window.onload = function() {
     var gg_posY = canvasHeight / 2;
 
     var text = "> Testing";
-    c.font = "20pt Arial";
+
 
     var FPS = 30;
     setInterval(function() {
@@ -27,11 +32,13 @@ window.onload = function() {
 
     function draw() {
         c.clearRect(0, 0, canvasWidth, canvasHeight);
+        c.font = "20pt Arial";
         c.fillStyle = 'Black';
-        c.strokeText(text, 30, 30);
-        c.fillText(text, 30, 30);
+        c.strokeText(text, 30, 570);
+        c.fillText(text, 30, 570);
         loading();
         gg();
+        GUI();
     }
 
     function gg() {
@@ -42,23 +49,44 @@ window.onload = function() {
         }
     }
 
+    function GUI() {
+        // Score
+        c.font = "20pt Arial";
+        c.fillStyle = 'Black';
+        c.fillText('Ваш счёт: ' + score, 35, 35);
+        // HP
+        c.fillText('HP: ', 280, 35);
+        c.fillRect(gg_hp_posX, 10, 130, 30);
+        c.fillStyle = 'White';
+        if (gg_hp == 1) { c.fillRect(gg_hp_posX + 5, 15, 20, 20); }
+        if (gg_hp == 2) { c.fillRect(gg_hp_posX + 5, 15, 20, 20); c.fillRect(gg_hp_posX + 30, 15, 20, 20); }
+        if (gg_hp == 3) { c.fillRect(gg_hp_posX + 5, 15, 20, 20); c.fillRect(gg_hp_posX + 30, 15, 20, 20) ; c.fillRect(gg_hp_posX + 55, 15, 20, 20); }
+        if (gg_hp == 4) { c.fillRect(gg_hp_posX + 5, 15, 20, 20); c.fillRect(gg_hp_posX + 30, 15, 20, 20) ; c.fillRect(gg_hp_posX + 55, 15, 20, 20); c.fillRect(gg_hp_posX + 80, 15, 20, 20); }
+        if (gg_hp == 5) { c.fillRect(gg_hp_posX + 5, 15, 20, 20); c.fillRect(gg_hp_posX + 30, 15, 20, 20) ; c.fillRect(gg_hp_posX + 55, 15, 20, 20); c.fillRect(gg_hp_posX + 80, 15, 20, 20); c.fillRect(gg_hp_posX + 105, 15, 20, 20);}
+        // Weapon
+        c.fillStyle = 'Black';
+        c.font = "15pt Arial";
+        c.fillText('Оружие: ' + weapon, 480, 30);
+        c.fillText('Уровень ' + level, 490, 570);
+        }
+
     function loading() {
         if (step==5) { step = 0; }
         switch (step) {
             case 0:
-                c.fillText("[:....]", 160, 30);
+                c.fillText("[:....]", 160, 570);
                 break;
             case 1:
-                c.fillText("[::...]", 160, 30);
+                c.fillText("[::...]", 160, 570);
                 break;
             case 2:
-                c.fillText("[:::..]", 160, 30);
+                c.fillText("[:::..]", 160, 570);
                 break;
             case 3:
-                c.fillText("[::::.]", 160, 30);
+                c.fillText("[::::.]", 160, 570);
                 break;
             case 4:
-                c.fillText("[:::::]", 160, 30);
+                c.fillText("[:::::]", 160, 570);
                 break;
         }
     }

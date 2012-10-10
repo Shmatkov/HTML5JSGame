@@ -120,6 +120,13 @@ window.onload = function() {
         }
     }
 
+    function Enemy(en_posXp, en_posYp, isSpawnp, enHPp) {
+        this.en_posX = en_posXp;
+        this.en_posY = en_posYp;
+        this.isSpawn = isSpawnp;
+        this.enHP = enHPp;
+    }
+
 };
 
 function getRandomInt(min, max)

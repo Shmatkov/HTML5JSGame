@@ -127,6 +127,42 @@ window.onload = function() {
         this.enHP = enHPp;
     }
 
+
+    function enCreate() {
+        for (var i=0; i<count; i++) {
+            var r1 = Math.random()*100+1;
+            var r2 = Math.random()*100+1;
+            if (r1 > 50 && r2 > 50) {
+                t_posX = getRandomInt(-100,0);
+                t_posY = getRandomInt(-100,700);
+            }
+            if (r1 < 50 && r2 > 50) {
+                t_posX = getRandomInt(800,900);
+                t_posY = getRandomInt(-100,700);
+            }
+            if (r1 < 50 && r2 < 50) {
+                t_posX = getRandomInt(-100,900);
+                t_posY = getRandomInt(-100,0);
+            }
+            if (r1 > 50 && r2 < 50) {
+                t_posX = getRandomInt(-100,900);
+                t_posY = getRandomInt(600,700);
+            }
+            enemies.push(new Enemy(t_posX, t_posY, 1, 100));
+        }
+    }
+
+    function drawEnemy() {
+        var enemy_pic = new Image();
+        enemy_pic.src = 'assets/enemy.png';
+        enemy_pic.onload = function(){
+            for (var i=0; i<enemies.length; i++)
+            {
+                c.drawImage(enemy_pic, enemies[i].en_posX, enemies[i].en_posY);
+            }
+        }
+    }
+
 };
 
 function getRandomInt(min, max)

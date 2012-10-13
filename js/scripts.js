@@ -163,6 +163,22 @@ window.onload = function() {
         }
     }
 
+
+    function move()
+    {
+        for(var i = 0; i<enemies.length;i++)
+        {
+            if ( enemies[i].en_posX<gg_posX)
+            {enemies[i].en_posX+=enspd;}
+            if (enemies[i].en_posX>gg_posX)
+            {enemies[i].en_posX-=enspd;}
+            if (enemies[i].en_posY<gg_posY)
+            {enemies[i].en_posY+=enspd;}
+            if (enemies[i].en_posY>gg_posY)
+            {enemies[i].en_posY -=enspd;}
+        }
+    }
+
 };
 
 function getRandomInt(min, max)

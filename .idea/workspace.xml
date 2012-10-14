@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9910ebe9-8b67-478b-802d-8e1045827b98" name="Default" comment="">
-      <change type="DELETED" beforePath="E:\Projects\HTML5JSGame\.idea\dictionaries\utama_000.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\Projects\HTML5JSGame\js\jquery.mobile-1.2.0.min.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scripts.js" afterPath="$PROJECT_DIR$/js/scripts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/styles.css" afterPath="$PROJECT_DIR$/styles/styles.css" />
-    </list>
+    <list default="true" id="9910ebe9-8b67-478b-802d-8e1045827b98" name="Default" comment="" />
     <ignored path="HTML5JSGame.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -49,7 +41,7 @@
       <file leaf-file-name="scripts.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/scripts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="190" column="88" selection-start="5489" selection-end="5489" vertical-scroll-proportion="0.7306338">
+            <state line="170" column="24" selection-start="4633" selection-end="4633" vertical-scroll-proportion="-0.13732395">
               <folding />
             </state>
           </provider>
@@ -222,7 +214,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32715008" sideWeight="0.4973939" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32715008" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -298,7 +290,7 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="306" />
+      <option name="time" value="308" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -367,7 +359,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/scripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="190" column="88" selection-start="5489" selection-end="5489" vertical-scroll-proportion="0.7306338">
+        <state line="170" column="24" selection-start="4633" selection-end="4633" vertical-scroll-proportion="-0.13732395">
           <folding />
         </state>
       </provider>

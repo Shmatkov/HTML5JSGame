@@ -11,14 +11,12 @@ var enemies = [];
 var enspd = 1.5;
 
 window.onload = function() {
-
     var canvas = document.getElementById('game');
     var c = canvas.getContext('2d');
     canvasWidth = canvas.width;
     canvasHeight = canvas.height;
     var gg_posX = canvasWidth / 2;
     var gg_posY = canvasHeight / 2;
-    var text = "> Testing";
     enCreate();
 
     var FPS = 30;
@@ -29,7 +27,7 @@ window.onload = function() {
 
     function update() {
         step++;
-        move();
+        enMove();
         for(var i = 0; i<enemies.length; i++)
         {
             if ( enemies[i].en_posX===gg_posX&&enemies[i].en_posY===gg_posY)
@@ -42,9 +40,7 @@ window.onload = function() {
         c.clearRect(0, 0, canvasWidth, canvasHeight);
         c.font = "20pt Arial";
         c.fillStyle = 'Black';
-        c.strokeText(text, 30, 570);
-        c.fillText(text, 30, 570);
-        loading();  gg(); drawEnemy(); GUI();
+        gg(); drawEnemy(); controlsMove(); GUI();
     }
 
     function gg() {
@@ -71,27 +67,6 @@ window.onload = function() {
         c.font = "15pt Arial";
         c.fillText('Оружие: ' + weapon, 480, 30);
         c.fillText('Уровень ' + level, 490, 570);
-    }
-
-    function loading() {
-        if (step==5) { step = 0; }
-        switch (step) {
-            case 0:
-                c.fillText("[:....]", 160, 570);
-                break;
-            case 1:
-                c.fillText("[::...]", 160, 570);
-                break;
-            case 2:
-                c.fillText("[:::..]", 160, 570);
-                break;
-            case 3:
-                c.fillText("[::::.]", 160, 570);
-                break;
-            case 4:
-                c.fillText("[:::::]", 160, 570);
-                break;
-        }
     }
 
     window.addEventListener('keydown',doKeyDown,true);
@@ -163,8 +138,7 @@ window.onload = function() {
         }
     }
 
-
-    function move()
+    function enMove()
     {
         for(var i = 0; i<enemies.length;i++)
         {
@@ -179,6 +153,48 @@ window.onload = function() {
         }
     }
 
+    var cx = 150;
+    var cy = 450;
+    function controlsMove()
+    {
+        c.fillStyle = 'Grey';
+        c.beginPath();
+        c.arc(cx, cy, 80, 0, 360, true);
+        c.closePath();
+        c.fill();
+        c.fillStyle = 'Black';
+        c.beginPath();
+        c.moveTo(150,370);
+        c.lineTo(150,530);
+        c.closePath();
+        c.stroke();
+        c.beginPath();
+        c.moveTo(70,450);
+        c.lineTo(230,450);
+        c.closePath();
+        c.stroke();
+    }
+
+    document.getElementById("game").onclick=function(){
+        if (event.clientX > 70 && event.clientX < 230 && event.clientY > 370 && event.clientY < 530)
+        {
+            // alert(event.clientX + ' ' + event.clientY);
+            var X = event.clientX - cx;
+            var Y = event.clientY - cy;
+            Y = Y - 2*Y;
+            // Посчитать нормальный котангенс, а не это дерьмо :(
+            var angle = Math.atan2(Y, X);
+            alert(X + ' ' + Y  + ' ' + angle);
+            if (angle > 1 && angle < 2) { gg_posY-=20; }
+            if (angle > -0.5 && angle < 0.5) { gg_posX+=20; }
+            if (angle > -1 && angle < 22) { gg_posY+=20; }
+            if (angle > -2.5 && angle < -3 || angle > 3 && angle < 2.5) { gg_posX-=20; }
+        }
+    };
+
+    document.addEventListener('touchstart', function(event) {
+        alert('LUKE, IM YOUR FATHER ' + event.clientX + '' + event.clientY);
+    });
 };
 
 function getRandomInt(min, max)

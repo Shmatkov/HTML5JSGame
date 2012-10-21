@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9910ebe9-8b67-478b-802d-8e1045827b98" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scripts.js" afterPath="$PROJECT_DIR$/js/scripts.js" />
     </list>
@@ -294,7 +293,7 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="530" />
+      <option name="time" value="532" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">

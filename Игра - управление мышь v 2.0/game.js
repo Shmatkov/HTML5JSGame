@@ -17,9 +17,6 @@ var clear = function(){
 	ctx.closePath();
 	ctx.fill();
 }
-
-
-
 var player = new (function(){
 	var that = this;
 	that.image = new Image();
@@ -33,8 +30,6 @@ var player = new (function(){
 	that.Y = 0;	
 	
 	/*
-	
-	Ќиколай
 $('#scene').mousedown(function(e) { // прив€зываем событие нажати€ мыши(дл€ перетаскивани€)
 var mouseX = e.layerX || 0;
 var mouseY = e.layerY || 0;
@@ -60,13 +55,9 @@ iLastMouseY = mouseY;
 $('#scene').mouseup(function(e) { // прив€зываем событие отжати€ мыши
 cat.bCat = false;
 bMouseDown = false;
-});
-	* mous*/
+});*/
+
 	
-	
-	
-	
-	  
 	
 	that.moveLeft = function(){
 		if (that.X > 0) {
@@ -88,7 +79,7 @@ bMouseDown = false;
 	}
 	
 	that.moveDown = function(){
-		if (that.Y + that.width < width) {
+		if (that.Y + that.height < height) {
 			that.setPosition(that.Y + 5, that.X);
 		}
 	}
@@ -103,6 +94,22 @@ bMouseDown = false;
 	that.interval = 0;
 	that.draw = function(){
 		try {
+		     if (mouseX>that.X+that.width)
+			 {
+			   that.X+=15;
+			 }
+			 if (mouseX<that.X)
+			 {
+			 that.X-=15;
+			 }
+			  if (mouseY>that.Y+that.height)
+			 {
+			 that.Y+=15;
+			 }
+			  if (mouseY<that.Y)
+			 {
+			 that.Y-=15;
+			 }
 			ctx.drawImage(that.image, 0, that.height * that.actualFrame, that.width, that.height, that.X, that.Y, that.width, that.height);
 		} 
 		catch (e) {
@@ -124,18 +131,22 @@ bMouseDown = false;
 
 player.setPosition(~~((width-player.width)/2), ~~((height - player.height)/2));
 
-
+var mouseMove = false;
+var mouseX, mouseY;
 document.onmousemove = function(e){
-	if (player.X + c.offsetLeft > e.pageX) {
-		player.moveLeft();
-	} else if (player.X + c.offsetLeft < e.pageX) {
-		player.moveRight();
+	if (e.pageX-c.offsetLeft<player.X + c.offsetLeft) 
+	{
+		mouseX = e.pageX-c.offsetLeft;
+		} 
+		
+		else if (player.X + c.offsetLeft+player.width < e.pageX-c.offsetLeft) {
+		mouseX = e.pageX-c.offsetLeft;
 	}
 	
-	if (player.Y + c.offsetUp > e.pageY) {
-		player.moveUp();
-	} else if (player.Y + c.offsetUp < e.pageY) {
-		player.moveDown();
+	if (player.Y + c.offsetTop + player.height < e.pageY-c.offsetTop) {
+		mouseY = e.pageY-c.offsetTop;
+	} else if (player.Y + c.offsetTop > e.pageY-c.offsetTop) {
+		mouseY = e.pageY-c.offsetTop;
 	}
 	
 }

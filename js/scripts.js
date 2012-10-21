@@ -10,6 +10,10 @@ var count = 5;
 var enemies = [];
 var enspd = 1.5;
 
+document.body.addEventListener('touchmove', function(event) {
+    event.preventDefault();
+}, false);
+
 window.onload = function() {
     var canvas = document.getElementById('game');
     var c = canvas.getContext('2d');
@@ -67,6 +71,7 @@ window.onload = function() {
         c.font = "15pt Arial";
         c.fillText('Оружие: ' + weapon, 480, 30);
         c.fillText('Уровень ' + level, 490, 570);
+
     }
 
     window.addEventListener('keydown',doKeyDown,true);
@@ -107,6 +112,8 @@ window.onload = function() {
         for (var i=0; i<count; i++) {
             var r1 = Math.random()*100+1;
             var r2 = Math.random()*100+1;
+            var t_posX;
+            var t_posY;
             if (r1 > 50 && r2 > 50) {
                 t_posX = getRandomInt(-100,0);
                 t_posY = getRandomInt(-100,700);
@@ -182,19 +189,115 @@ window.onload = function() {
             var X = event.clientX - cx;
             var Y = event.clientY - cy;
             Y = Y - 2*Y;
-            // Посчитать нормальный котангенс, а не это дерьмо :(
-            var angle = Math.atan2(Y, X);
-            alert(X + ' ' + Y  + ' ' + angle);
-            if (angle > 1 && angle < 2) { gg_posY-=20; }
-            if (angle > -0.5 && angle < 0.5) { gg_posX+=20; }
-            if (angle > -1 && angle < 22) { gg_posY+=20; }
-            if (angle > -2.5 && angle < -3 || angle > 3 && angle < 2.5) { gg_posX-=20; }
+            var angle;
+            var rad;
+            var hyp;
+            var cos;
+            if (X<0 && Y>0) {
+                X = X - 2*X;
+                hyp = Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2));
+                cos = X / hyp;
+                rad = Math.acos(cos);
+                angle = rad * 180 / Math.PI;
+                if (angle > 0 && angle < 22.5) { gg_posX-=10; }
+                if (angle > 22.5 && angle < 67.5) { gg_posX-=7; gg_posY-=7; }
+                if (angle > 67.5 && angle < 90) {gg_posY-=10; }
+            } else if (X<0 && Y<0) {
+                X = X - 2*X;
+                Y = Y - 2*Y;
+                hyp = Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2));
+                cos = X / hyp;
+                rad = Math.acos(cos);
+                angle = rad * 180 / Math.PI;
+                if (angle > 0 && angle < 22.5) { gg_posX-=10; }
+                if (angle > 22.5 && angle < 67.5) { gg_posX-=7; gg_posY+=7; }
+                if (angle > 67.5 && angle < 90) {gg_posY+=10; }
+            } else if (X>0 && Y<0) {
+                Y = Y - 2*Y;
+                hyp = Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2));
+                cos = X / hyp;
+                rad = Math.acos(cos);
+                angle = rad * 180 / Math.PI;
+                if (angle > 0 && angle < 22.5) { gg_posX+=10; }
+                if (angle > 22.5 && angle < 67.5) { gg_posX+=7; gg_posY+=7; }
+                if (angle > 67.5 && angle < 90) {gg_posY+=10; }
+            } else if (X>0 && Y>0) {
+                hyp = Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2));
+                cos = X / hyp;
+                rad = Math.acos(cos);
+                angle = rad * 180 / Math.PI;
+                if (angle > 0 && angle < 22.5) { gg_posX+=10; }
+                if (angle > 22.5 && angle < 67.5) { gg_posX+=7; gg_posY-=7; }
+                if (angle > 67.5 && angle < 90) {gg_posY-=10; }
+            } else if ( X===0 && Y > 0) {
+                gg_posY-=10;
+            } else if ( X===0 && Y < 0) {
+                gg_posY+=10;
+            } else if ( Y===0 && X > 0) {
+                gg_posX+=10;
+            } else if ( Y===0 && X < 0) {
+                gg_posX-=10;
+            }
+            //alert(X + ' ::: ' + Y  + '  ::: ' + angle);
+            c.fillText(X + ' ::: ' + Y  + '  ::: ' + angle, 35, 550);
         }
     };
 
     document.addEventListener('touchstart', function(event) {
-        alert('LUKE, IM YOUR FATHER ' + event.clientX + '' + event.clientY);
-    });
+        //alert('LUKE, IM YOUR FATHER ' + event.clientX + '' + event.clientY);
+        var X = event.clientX - cx;
+        var Y = event.clientY - cy;
+        Y = Y - 2*Y;
+        var angle;
+        var rad;
+        var hyp;
+        var cos;
+        if (X<0 && Y>0) {
+            X = X - 2*X;
+            hyp = Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2));
+            cos = X / hyp;
+            rad = Math.acos(cos);
+            angle = rad * 180 / Math.PI;
+            if (angle > 0 && angle < 22.5) { gg_posX-=10; }
+            if (angle > 22.5 && angle < 67.5) { gg_posX-=7; gg_posY-=7; }
+            if (angle > 67.5 && angle < 90) {gg_posY-=10; }
+        } else if (X<0 && Y<0) {
+            X = X - 2*X;
+            Y = Y - 2*Y;
+            hyp = Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2));
+            cos = X / hyp;
+            rad = Math.acos(cos);
+            angle = rad * 180 / Math.PI;
+            if (angle > 0 && angle < 22.5) { gg_posX-=10; }
+            if (angle > 22.5 && angle < 67.5) { gg_posX-=7; gg_posY+=7; }
+            if (angle > 67.5 && angle < 90) {gg_posY+=10; }
+        } else if (X>0 && Y<0) {
+            Y = Y - 2*Y;
+            hyp = Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2));
+            cos = X / hyp;
+            rad = Math.acos(cos);
+            angle = rad * 180 / Math.PI;
+            if (angle > 0 && angle < 22.5) { gg_posX+=10; }
+            if (angle > 22.5 && angle < 67.5) { gg_posX+=7; gg_posY+=7; }
+            if (angle > 67.5 && angle < 90) {gg_posY+=10; }
+        } else if (X>0 && Y>0) {
+            hyp = Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2));
+            cos = X / hyp;
+            rad = Math.acos(cos);
+            angle = rad * 180 / Math.PI;
+            if (angle > 0 && angle < 22.5) { gg_posX+=10; }
+            if (angle > 22.5 && angle < 67.5) { gg_posX+=7; gg_posY-=7; }
+            if (angle > 67.5 && angle < 90) {gg_posY-=10; }
+        } else if ( X===0 && Y > 0) {
+            gg_posY-=10;
+        } else if ( X===0 && Y < 0) {
+            gg_posY+=10;
+        } else if ( Y===0 && X > 0) {
+            gg_posX+=10;
+        } else if ( Y===0 && X < 0) {
+            gg_posX-=10;
+        }
+    }, false);
 };
 
 function getRandomInt(min, max)

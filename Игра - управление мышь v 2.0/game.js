@@ -29,34 +29,6 @@ var player = new (function(){
 	that.X = 0;
 	that.Y = 0;	
 	
-	/*
-$('#scene').mousedown(function(e) { // привязываем событие нажатия мыши(для перетаскивания)
-var mouseX = e.layerX || 0;
-var mouseY = e.layerY || 0;
-if(e.originalEvent.layerX) {
-mouseX = e.originalEvent.layerX;
-mouseY = e.originalEvent.layerY;
-}
-
-bMouseDown = true;
-
-if ((mouseX > cat.x+cat.w && mouseX < ctx.canvas.width) || (mouseX<cat.x && mouseX < ctx.canvas.width) )
-{
-//cat.bCat = true;
-iLastMouseX = mouseX;
-}
-if ((mouseY > cat.y+cat.h && mouseY < ctx.canvas.height) || (mouseY<cat.y && mouseY < ctx.canvas.height))
-{
-//cat.bCat = true;
-iLastMouseY = mouseY;
-}
-});
-
-$('#scene').mouseup(function(e) { // привязываем событие отжатия мыши
-cat.bCat = false;
-bMouseDown = false;
-});*/
-
 	
 	
 	that.moveLeft = function(){

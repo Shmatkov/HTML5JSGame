@@ -32,41 +32,7 @@ var player = new (function(){
 	that.X = 0;
 	that.Y = 0;	
 	
-	/*
-	
-	Ќиколай
-$('#scene').mousedown(function(e) { // прив€зываем событие нажати€ мыши(дл€ перетаскивани€)
-var mouseX = e.layerX || 0;
-var mouseY = e.layerY || 0;
-if(e.originalEvent.layerX) {
-mouseX = e.originalEvent.layerX;
-mouseY = e.originalEvent.layerY;
-}
-
-bMouseDown = true;
-
-if ((mouseX > cat.x+cat.w && mouseX < ctx.canvas.width) || (mouseX<cat.x && mouseX < ctx.canvas.width) )
-{
-//cat.bCat = true;
-iLastMouseX = mouseX;
-}
-if ((mouseY > cat.y+cat.h && mouseY < ctx.canvas.height) || (mouseY<cat.y && mouseY < ctx.canvas.height))
-{
-//cat.bCat = true;
-iLastMouseY = mouseY;
-}
-});
-
-$('#scene').mouseup(function(e) { // прив€зываем событие отжати€ мыши
-cat.bCat = false;
-bMouseDown = false;
-});
-	* mous*/
-	
-	
-	
-	
-	  
+		  
 	
 	that.moveLeft = function(){
 		if (that.X > 0) {
